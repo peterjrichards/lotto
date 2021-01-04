@@ -1,9 +1,13 @@
+using System;
 using System.Linq;
 using Moq;
 using Xunit;
 
 namespace LottoService.Tests
 {
+  // TODO: create setup method to avoid creating new service for each test
+  // TODO: update to use Autofac
+  // TODO: add tests for defensive checks
   public class LottoServiceUnitTests
   {
     [Fact]
@@ -37,6 +41,23 @@ namespace LottoService.Tests
       var result = service.GenerateNumbers();
       var expectedOrder = result.OrderBy(x => x);
       Assert.Equal(expectedOrder, result);
+    }
+
+[Fact]
+    public void GenerateNumbers_NumToGenerateIsZero_ReturnsEmptyEnumerable()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      var result = service.GenerateNumbers(0);
+      Assert.Empty(result);
+    }
+
+    [Fact]
+    public void GenerateNumbers_NumToGenerateLessThanZero_ThrowsArgumentOutOfRangeException()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      Assert.Throws<ArgumentOutOfRangeException>(() => service.GenerateNumbers(-1));
     }
 
     private Mock<IRandomNumberService<int>> BuildRandomNumberService()
