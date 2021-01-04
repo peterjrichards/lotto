@@ -2,7 +2,7 @@
 
 namespace LottoService
 {
-    public class Class1
+    public class LottoService
     {
     }
 }
