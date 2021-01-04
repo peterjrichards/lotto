@@ -5,11 +5,12 @@ namespace LottoService
 {
   public class LottoService : ILottoService
   {
-    protected readonly Random _random;
+    // Use Stategy pattern so a different random number generator can be used in future.
+    protected readonly IRandomNumberService<int> _randomNumberService;
 
-    public LottoService()
+    public LottoService(IRandomNumberService<int> randomNumberService)
     {
-      _random = new Random();
+      _randomNumberService = randomNumberService;
     }
 
     public IEnumerable<int> GenerateNumbers(int count = 6, int min = 1, int max = 49)
@@ -17,7 +18,7 @@ namespace LottoService
       var numbers = new HashSet<int>();
       while (numbers.Count < count)
       {
-        var num = _random.Next(min, max);
+        var num = _randomNumberService.Next(min, max);
         // Check and exclude duplicate
         if (!numbers.Contains(num))
         {

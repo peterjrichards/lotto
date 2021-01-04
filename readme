@@ -6,3 +6,4 @@ This readme and the commits involved are very granular to show what has been don
 5) Updated readme, to call out granularity
 6) Generate set of random numbers. First test is passing"
 7) Add test to check for uniqueness (perhaps unncessary as already added Contains check but this will fail if that changes in the future)
+8) Refactor LottoService to use Strategy pattern to request random numbers (also helps with unit tests)
