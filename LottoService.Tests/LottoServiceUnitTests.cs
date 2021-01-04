@@ -29,6 +29,16 @@ namespace LottoService.Tests
       Assert.Equal(6, unique.Length);
     }
 
+    [Fact]
+    public void GenerateNumbers_ReturnsOrderedNumbersAscending()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      var result = service.GenerateNumbers();
+      var expectedOrder = result.OrderBy(x => x);
+      Assert.Equal(expectedOrder, result);
+    }
+
     private Mock<IRandomNumberService<int>> BuildRandomNumberService()
     {
       var service = new Mock<IRandomNumberService<int>>();

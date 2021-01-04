@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 
 namespace LottoService
@@ -25,7 +25,9 @@ namespace LottoService
           numbers.Add(num);
         }
       }
-      return numbers;
+
+      // Use Linq to return integers in ascending order
+      return numbers.OrderBy(x => x);
     }
   }
 }
