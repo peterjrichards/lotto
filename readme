@@ -1,4 +1,6 @@
+This readme and the commits involved are very granular to show what has been done.
 1) Create this file
 2) Used dotnet to create solution, projects and add .gitignore
 3) Rename Class1.cs -> LottoService.cs, UnitTest.cs -> LottoServiceUnitTests.cs
 4) Create ILottoServiceInterface.cs and wrote first failing unit test
+5) Updated readme, to call out granularity
