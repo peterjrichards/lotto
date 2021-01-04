@@ -4,3 +4,5 @@ This readme and the commits involved are very granular to show what has been don
 3) Rename Class1.cs -> LottoService.cs, UnitTest.cs -> LottoServiceUnitTests.cs
 4) Create ILottoServiceInterface.cs and wrote first failing unit test
 5) Updated readme, to call out granularity
+6) Generate set of random numbers. First test is passing"
+7) Add test to check for uniqueness (perhaps unncessary as already added Contains check but this will fail if that changes in the future)
