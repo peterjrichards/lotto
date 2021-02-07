@@ -43,7 +43,7 @@ namespace LottoService.Tests
       Assert.Equal(expectedOrder, result);
     }
 
-[Fact]
+    [Fact]
     public void GenerateNumbers_NumToGenerateIsZero_ReturnsEmptyEnumerable()
     {
       var randNumSvc = BuildRandomNumberService();
@@ -58,6 +58,30 @@ namespace LottoService.Tests
       var randNumSvc = BuildRandomNumberService();
       var service = (ILottoService)new LottoService(randNumSvc.Object);
       Assert.Throws<ArgumentOutOfRangeException>(() => service.GenerateNumbers(-1));
+    }
+
+    [Fact]
+    public void GenerateNumbers_MinLessThanOne_ThrowsArgumentOutOfRangeException()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      Assert.Throws<ArgumentOutOfRangeException>(() => service.GenerateNumbers(1, 0));
+    }
+
+    [Fact]
+    public void GenerateNumbers_MaxLessThanOne_ThrowsArgumentOutOfRangeException()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      Assert.Throws<ArgumentOutOfRangeException>(() => service.GenerateNumbers(1, 1, 0));
+    }
+
+    [Fact]
+    public void GenerateNumbers_MaxLessThanMin_ThrowsArgumentException()
+    {
+      var randNumSvc = BuildRandomNumberService();
+      var service = (ILottoService)new LottoService(randNumSvc.Object);
+      Assert.Throws<ArgumentException>(() => service.GenerateNumbers(1, 2, 1));
     }
 
     private Mock<IRandomNumberService<int>> BuildRandomNumberService()
