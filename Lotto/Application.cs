@@ -1,4 +1,4 @@
-using System;
+using System.Diagnostics.Contracts;
 using LottoService;
 
 namespace Lotto
@@ -10,7 +10,9 @@ namespace Lotto
 
     public Application(ILottoService service, ILottoConsoleWriter writer)
     {
+      Contract.Assert(service != null);
       _service = service;
+      Contract.Assert(writer != null);
       _writer = writer;
     }
 

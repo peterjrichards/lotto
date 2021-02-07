@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
 
 namespace LottoService
 {
@@ -11,6 +12,7 @@ namespace LottoService
 
     public LottoService(IRandomNumberService<int> randomNumberService)
     {
+      Contract.Assert(randomNumberService != null);
       _randomNumberService = randomNumberService;
     }
 
