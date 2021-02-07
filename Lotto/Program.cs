@@ -12,6 +12,7 @@ namespace Lotto
       // TODO: introduce Autofac modules, i.e. CoreModule, ServiceModule
       var builder = new ContainerBuilder();
       builder.RegisterType<Application>();
+      builder.RegisterType<LottoConsoleWriter>().As<ILottoConsoleWriter>();
       builder.RegisterType<LottoService.DefaultRandomNumberService>().As<LottoService.IRandomNumberService<int>>();
       builder.RegisterType<LottoService.LottoService>().As<LottoService.ILottoService>();
       return builder.Build();

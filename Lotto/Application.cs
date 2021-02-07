@@ -5,21 +5,19 @@ namespace Lotto
 {
   sealed class Application
   {
-    private ILottoService _lottoService;
+    private ILottoService _service;
+    private readonly ILottoConsoleWriter _writer;
 
-    public Application(ILottoService lottoService)
+    public Application(ILottoService service, ILottoConsoleWriter writer)
     {
-      _lottoService = lottoService;
+      _service = service;
+      _writer = writer;
     }
 
     internal void Run()
     {
-      var lottoNumbers = _lottoService.GenerateNumbers();
-      foreach (var num in lottoNumbers)
-      {
-        Console.Write(num);
-        Console.Write(" ");
-      }
+      var lottoNumbers = _service.GenerateNumbers();
+      _writer.Write(lottoNumbers);
     }
   }
 }
